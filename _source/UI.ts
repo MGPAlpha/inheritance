@@ -209,6 +209,9 @@ class UI {
         room.enter();
       }));
     }
+    if (room.type == RoomType.Exit && room.hasPlayer) div.appendChild(UI.makeButton("Leave Floor", function() {
+      room.containerFloor.currentRun.nextFloor();
+    }));
     if (room.visited) div.classList.add("visited"); 
     else div.classList.add("unvisited");
     div.appendChild(document.createTextNode(room.distanceFromEntrance.toString())); 

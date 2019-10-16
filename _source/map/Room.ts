@@ -31,8 +31,10 @@ class Room {
     }
 
     enter(): void {
-        for (var i = 0; i < this.exits.length; i++) {
-            this.exits[i].hasPlayer = false;
+        for (var i = 0; i < this.containerFloor.rooms.length; i++) {
+            for (var j = 0; j < this.containerFloor.rooms[i].length; j++) {
+                if (this.containerFloor.rooms[i][j]) this.containerFloor.rooms[i][j].hasPlayer = false;
+            }
         }
         this.visited = true;
         this.hasPlayer = true;

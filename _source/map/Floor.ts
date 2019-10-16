@@ -16,7 +16,7 @@ class Floor {
 
     constructor(level: number, currentRun: Run) {
         this.currentRun = currentRun
-        var floorSettings = floors[0];
+        var floorSettings = floors[level];
         this.width = floorSettings.width;
         this.height = floorSettings.height;
 

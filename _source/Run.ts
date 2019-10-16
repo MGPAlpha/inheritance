@@ -8,6 +8,7 @@ class Run {
     seenModifiers: string[];
     numEvents: number;
     currentFloor: Floor;
+    currentFloorNumber: number = 0;
 
     constructor(player: Player) {
         this.player = player;
@@ -19,6 +20,13 @@ class Run {
 
     start(): void {
         this.currentFloor = new Floor(0, this);
+        this.nextEvent();
+    }
+
+    nextFloor(): void {
+        this.currentFloorNumber++;
+        console.log(this.currentFloorNumber);
+        this.currentFloor = new Floor(this.currentFloorNumber, this);
         this.nextEvent();
     }
 
