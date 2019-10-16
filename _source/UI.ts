@@ -74,6 +74,10 @@ class UI {
     return img;
   }
 
+  static makeRoomIcon(str: string): HTMLElement {
+    return UI.makeImg(`assets/temp_${str}.png`, 'room-icon');
+  }
+
   static fakeClick(elem: HTMLElement): void {
     //TODO: structure this more reasonably
     elem.classList.remove('fakeclick');
@@ -196,18 +200,24 @@ class UI {
   static renderRoom(room : Room, visible? : boolean) {
     const div : HTMLElement = UI.makeDiv("room");
     div.classList.add(room.type + "-room");
-    var visible = false;
-    for (var i = 0; i < room.exits.length; i++) {
+    var visible = room.hasPlayer;
+    for (var i = 0; i < room.exits.length && !visible; i++) {
       if (room.exits[i].hasPlayer) {
         visible = true;
-        break;
       }
     }
-    if (visible) {
+    if (visible || room.visited) {
       div.classList.add("visible");
-      div.appendChild(UI.makeButton("Go!", function(e: MouseEvent) {
-        room.enter();
-      }));
+      if (room.hasPlayer) {
+        div.appendChild(UI.makeRoomIcon('player'));
+      } else if (room.type !== RoomType.Empty) {
+        div.appendChild(UI.makeRoomIcon(room.type));
+      }
+      if (!room.hasPlayer && visible) {
+        div.onclick = function(e: MouseEvent) {
+          room.enter();
+        };
+      }
     }
     if (room.type == RoomType.Exit && room.hasPlayer) div.appendChild(UI.makeButton("Leave Floor", function() {
       room.containerFloor.currentRun.nextFloor();

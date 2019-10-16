@@ -14,3 +14,4 @@ makeDirectoryReferences('tools');
 makeDirectoryReferences('modifiers');
 makeDirectoryReferences('characters');
 makeDirectoryReferences('enemies');
+makeDirectoryReferences('statuses');

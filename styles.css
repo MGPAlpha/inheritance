@@ -122,8 +122,8 @@ button.endturn:active {
 }
 
 .logo {
-  background: url(assets/titletexturebright.png) repeat;
-  animation: bgscroll infinite linear 12s;
+  background: url(assets/titletexturebig.png) repeat;
+  animation: bgscroll infinite linear 36s;
   display: block;
   margin: 25px;
 }
@@ -134,7 +134,7 @@ button.endturn:active {
   }
 
   to {
-    background-position: 0px -512px;
+    background-position: 0px -1024px;
   }
 }
 
@@ -178,6 +178,15 @@ button.endturn:active {
   padding: 0px;
   width: 100%;
   background-color: black;
+  overflow: hidden;
+  position: relative;
+}
+
+.room-icon {
+  position: absolute;
+  width: 100px;
+  left: 50%;
+  margin-left: -50px;
 }
 
 .room.visited.entrance-room {

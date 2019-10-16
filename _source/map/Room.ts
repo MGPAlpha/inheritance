@@ -5,6 +5,7 @@ class Room {
     containerFloor: Floor;
     type : RoomType;
     exits : Room[];
+    blockedSides: string[];
     distanceFromEntrance : number;
     visited: boolean;
     hasPlayer: boolean;
@@ -24,6 +25,7 @@ class Room {
         this.visited = false;
         if (containedEnemy) this.containedEnemy = containedEnemy;
         if (containedTool) this.containedTool = containedTool;
+        this.blockedSides = [];
     }
 
     continueFloor(): void {
