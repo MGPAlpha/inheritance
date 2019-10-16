@@ -164,6 +164,15 @@ class UI {
     return div;
   }
 
+  static renderToolRoom(t: Tool, p: Player, inRoom: Room, refusable: boolean = true) {
+    const div = UI.makeDiv('tool');
+    div.appendChild(UI.makeButton("Not implemented tool pickups so just continue!", function() {
+      inRoom.containedTool = null;
+      UI.fillScreen(UI.renderFloor(inRoom.containerFloor));
+    }))
+    return div;
+  }
+
   static renderFloor(floor : Floor) {
     console.log(floor);
     const div : HTMLElement = UI.makeDiv("map");

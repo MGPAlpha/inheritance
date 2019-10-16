@@ -42,6 +42,11 @@ class Room {
                     var f = new Fight(this.containerFloor.currentRun.player, this.containedEnemy, this);
                     break;
                 }
+            case RoomType.Tool:
+                if (this.containedTool != null) {
+                    UI.fillScreen(UI.renderToolRoom(this.containedTool, this.containerFloor.currentRun.player, this));
+                    break;
+                }
             case RoomType.Empty:
             case RoomType.Entrance:
             case RoomType.Exit:

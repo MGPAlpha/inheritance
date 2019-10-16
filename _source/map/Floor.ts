@@ -42,6 +42,16 @@ class Floor {
             floorEnemies[i].weight /= enemyWeightTotal;
         }
 
+        var floorTools = floorSettings.tools;
+        var toolWeightTotal = 0;
+
+        for (var i = 0; i < floorTools.length; i++) {
+            toolWeightTotal += floorTools[i].weight;
+        }
+        for (var i = 0; i < floorTools.length; i++) {
+            floorTools[i].weight /= toolWeightTotal;
+        }
+
         this.rooms = new Array<Array<Room>>(this.height);
         for (var i = 0; i < this.rooms.length; i++) {
             this.rooms[i] = new Array<Room>(this.width);
@@ -80,6 +90,7 @@ class Floor {
             }
             var roomType;
             var roomRand = Math.random();
+            console.log(roomWeights);
             for (var j = 0; j < roomWeights.length; j++) {
                 roomRand -= roomWeights[j].weight;
                 if (roomRand < 0) {
@@ -95,6 +106,15 @@ class Floor {
                     enemyRand -= floorEnemies[j].weight;
                     if (enemyRand < 0) {
                         newRoom = new Room(this, roomType, this.rooms[roomIndex[0]][roomIndex[1]], 0, false, enemies.get(floorEnemies[j].name));
+                        break;
+                    }
+                }
+            } else if (roomType == RoomType.Tool) {
+                var toolRand = Math.random();
+                for (var j = 0; j < floorTools.length; j++) {
+                    toolRand -= floorTools[j].weight;
+                    if (toolRand < 0) {
+                        newRoom = new Room(this, roomType, this.rooms[roomIndex[0]][roomIndex[1]], 0, false, null, tools.get(floorTools[j].name));
                         break;
                     }
                 }

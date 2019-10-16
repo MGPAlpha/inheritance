@@ -5,8 +5,8 @@ var floors = [
         "minRooms": 15,
         "maxRooms": 20,
         "roomWeights": [
-            {"name": "empty", "weight": 2},
-            {"name": "enemy", "weight": 10},
+            {"name": "empty", "weight": 1},
+            {"name": "enemy", "weight": 1},
             {"name": "tool", "weight": 1}
         ],
         "enemies": [

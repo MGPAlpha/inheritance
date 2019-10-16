@@ -7,6 +7,7 @@ class Run {
     seenEnemies: string[];
     seenModifiers: string[];
     numEvents: number;
+    currentFloor: Floor;
 
     constructor(player: Player) {
         this.player = player;
@@ -17,12 +18,13 @@ class Run {
     }
 
     start(): void {
+        this.currentFloor = new Floor(0, this);
         this.nextEvent();
     }
 
     nextEvent(): void {
         this.numEvents++;
-        UI.fillScreen(UI.renderFloor(new Floor(0, this)));
+        UI.fillScreen(UI.renderFloor(this.currentFloor));
         // switch (this.numEvents % 2) {
         //     case 0:
         //         return this.offerModifier();

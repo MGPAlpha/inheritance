@@ -82,7 +82,7 @@ class Fight {
 
   end(): void {
     document.body.removeChild(this.div);
-    if (this.inRoom) this.inRoom.continueFloor();
+    if (this.inRoom) this.inRoom.containerFloor.currentRun.offerModifier();
     else this.endCallback();
   }
 
