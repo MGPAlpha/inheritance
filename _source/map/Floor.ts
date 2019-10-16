@@ -26,16 +26,7 @@ class Floor {
         
         var roomWeights = floorSettings.roomWeights.map(obj => <[string, number]> [obj.name, obj.weight]);  
         var floorEnemies = floorSettings.enemies.map(obj => <[string, number]> [obj.name, obj.weight]);
-
-        var floorTools = floorSettings.tools;
-        var toolWeightTotal = 0;
-
-        for (var i = 0; i < floorTools.length; i++) {
-            toolWeightTotal += floorTools[i].weight;
-        }
-        for (var i = 0; i < floorTools.length; i++) {
-            floorTools[i].weight /= toolWeightTotal;
-        }
+        var floorTools = floorSettings.tools.map(obj => <[string, number]> [obj.name, obj.weight]);
 
         this.rooms = new Array<Array<Room>>(this.height);
         for (var i = 0; i < this.rooms.length; i++) {
@@ -76,7 +67,9 @@ class Floor {
             var roomType = Random.weightedRandom(roomWeights);
             var newRoom;
             if (roomType == RoomType.Enemy) {
-                newRoom = new Room(this, roomType, this.rooms[roomIndex[0]][roomIndex[1]], 0, false, enemies.get(Random.weightedRandom(floorEnemies)));
+                newRoom = new Room(this, <RoomType> roomType, this.rooms[roomIndex[0]][roomIndex[1]], 0, false, enemies.get(Random.weightedRandom(floorEnemies)));
+            } else if (roomType = RoomType.Tool) {
+                newRoom = new Room(this, <RoomType> roomType, this.rooms[roomIndex[0]][roomIndex[1]], 0, false, null, tools.get(Random.weightedRandom(floorTools)));
             } else {
                 newRoom = new Room(this, <RoomType> roomType, this.rooms[roomIndex[0]][roomIndex[1]]);
             }
