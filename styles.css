@@ -200,6 +200,9 @@ button.endturn:active {
 
 .room {
   flex-grow: 1;
+  border-width: 5px;
+  border-style: solid;
+  border-color: rgba(0, 0, 0, 0);
   padding: 0px;
   width: 100%;
   background-color: black;
@@ -212,6 +215,10 @@ button.endturn:active {
   width: 100px;
   left: 50%;
   margin-left: -50px;
+}
+
+.room.visited {
+  border-color: #000;
 }
 
 .room.visited.entrance-room {

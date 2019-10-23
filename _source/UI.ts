@@ -209,8 +209,8 @@ class UI {
     const div : HTMLElement = UI.makeDiv("room");
     div.classList.add(room.type + "-room");
     var visible = room.hasPlayer;
-    for (var i = 0; i < room.exits.length && !visible; i++) {
-      if (room.exits[i].hasPlayer) {
+    for (var i = 0; i < room.exits.length; i++) {
+      if (room.exits[i][0].hasPlayer) {
         visible = true;
       }
     }
@@ -225,6 +225,24 @@ class UI {
         div.onclick = function(e: MouseEvent) {
           room.enter();
         };
+      }
+    }
+    if (room.visited) {
+      for (let exit of room.exits) {
+        switch (exit[1]) {
+          case 0:
+            div.style.borderBottomColor = "rgba(0,0,0,0)";
+            break;
+          case 1:
+            div.style.borderRightColor = "rgba(0,0,0,0)";
+            break;
+          case 2:
+            div.style.borderTopColor = "rgba(0,0,0,0)";
+            break;
+          case 3:
+            div.style.borderLeftColor = "rgba(0,0,0,0)";
+            break;
+        }
       }
     }
     if (room.type == RoomType.Exit && room.hasPlayer) div.appendChild(UI.makeButton("Leave Floor", function() {

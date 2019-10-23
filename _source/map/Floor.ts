@@ -41,10 +41,11 @@ class Floor {
             var roomIndex;
             var newRoomIndex;
             var maxRoomDistance = 0;
+            var branchDirection;
             while (true) {
                 roomIndex = Random.intCoord(this.height, this.width);
+                branchDirection = Random.intLessThan(4);
                 if (this.rooms[roomIndex[0]][roomIndex[1]] != undefined) {
-                    var branchDirection = Random.intLessThan(4);
                     var newRoomOffset;
                     switch(branchDirection) {
                         case 0:
@@ -67,14 +68,14 @@ class Floor {
             var roomType = Random.weightedRandom(roomWeights);
             var newRoom;
             if (roomType == RoomType.Enemy) {
-                newRoom = new Room(this, <RoomType> roomType, this.rooms[roomIndex[0]][roomIndex[1]], 0, false, enemies.get(Random.weightedRandom(floorEnemies)));
+                newRoom = new Room(this, <RoomType> roomType, [this.rooms[roomIndex[0]][roomIndex[1]], (branchDirection + 2) % 4], 0, false, enemies.get(Random.weightedRandom(floorEnemies)));
             } else if (roomType = RoomType.Tool) {
-                newRoom = new Room(this, <RoomType> roomType, this.rooms[roomIndex[0]][roomIndex[1]], 0, false, null, tools.get(Random.weightedRandom(floorTools)));
+                newRoom = new Room(this, <RoomType> roomType, [this.rooms[roomIndex[0]][roomIndex[1]], (branchDirection + 2) % 4], 0, false, null, tools.get(Random.weightedRandom(floorTools)));
             } else {
-                newRoom = new Room(this, <RoomType> roomType, this.rooms[roomIndex[0]][roomIndex[1]]);
+                newRoom = new Room(this, <RoomType> roomType, [this.rooms[roomIndex[0]][roomIndex[1]], (branchDirection + 2) % 4]);
             }
             this.rooms[newRoomIndex[0]][newRoomIndex[1]] = newRoom;
-            this.rooms[roomIndex[0]][roomIndex[1]].exits.push(newRoom);
+            this.rooms[roomIndex[0]][roomIndex[1]].exits.push([newRoom, branchDirection]);
             maxRoomDistance = Math.max(maxRoomDistance, newRoom.distanceFromEntrance);
         }
         var minExitDistance = Math.ceil(maxRoomDistance * 3.0 / 4);

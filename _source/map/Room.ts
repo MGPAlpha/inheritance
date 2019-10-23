@@ -4,7 +4,7 @@
 class Room {
     containerFloor: Floor;
     type : RoomType;
-    exits : Room[];
+    exits : [Room, number][];
     blockedSides: string[];
     distanceFromEntrance : number;
     visited: boolean;
@@ -12,12 +12,12 @@ class Room {
     containedEnemy: Enemy;
     containedTool: Tool;
 
-    constructor(containerFloor: Floor, type: RoomType, entrance? : Room, distanceFromEntrance? : number, hasPlayer? : boolean, containedEnemy? : Enemy, containedTool? : Tool) {
+    constructor(containerFloor: Floor, type: RoomType, entrance? : [Room, number], distanceFromEntrance? : number, hasPlayer? : boolean, containedEnemy? : Enemy, containedTool? : Tool) {
         this.containerFloor = containerFloor;
         this.type = type;
         this.exits = entrance ? [entrance] : [];
         if (entrance) {
-            this.distanceFromEntrance = entrance.distanceFromEntrance + 1
+            this.distanceFromEntrance = entrance[0].distanceFromEntrance + 1
         } else {
             this.distanceFromEntrance = distanceFromEntrance || 0;
         }
