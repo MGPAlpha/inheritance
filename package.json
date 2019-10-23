@@ -1,0 +1,29 @@
+{
+  "name": "inheritance",
+  "version": "1.0.0",
+  "description": "The Prototype Inheritance",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/maymoonsley/inheritance.git"
+  },
+  "author": "May Lawver",
+  "bugs": {
+    "url": "https://github.com/maymoonsley/inheritance/issues"
+  },
+  "main": "built.js",
+  "dependencies": {
+    "connect": "^3.7.0",
+    "serve-static": "^1.14.1"
+  },
+  "devDependencies": {
+    "typescript": "^3.6.4"
+  },
+  "scripts": {
+    "build-all": "npm run build && npm run postprocess",
+    "build": "npm run preprocess && tsc --project _source",
+    "preprocess": "node _preprocess.js",
+    "postprocess": "node _postprocess.js",
+    "start": "node server.js"
+  },
+  "homepage": "https://github.com/maymoonsley/inheritance#readme"
+}

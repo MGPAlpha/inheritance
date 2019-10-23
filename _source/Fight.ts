@@ -14,10 +14,12 @@ class Fight {
 
   constructor(p: Player, e: Enemy, inRoom?: Room) {
     this.player = p;
-    p.refresh();
     this.enemy = e;
-    e.refresh();
-    if (inRoom) this.inRoom = inRoom;
+    p.startFight(e);
+    e.startFight(p);
+    if (inRoom) {
+      this.inRoom = inRoom;
+    }
     this.endCallback = () => {};
     this.playersTurn = true;
     this.enemyButtons = [];
@@ -33,9 +35,14 @@ class Fight {
   }
 
   endTurn(): void {
+    if (this.playersTurn) {
+      this.player.endTurn();
+      this.enemy.startTurn();
+    } else {
+      this.enemy.endTurn();
+      this.player.startTurn();
+    }
     this.playersTurn = !this.playersTurn;
-    this.player.refresh();
-    this.enemy.refresh();
     this.enemyButtons = [];
     UI.redraw();
     if (!this.playersTurn) {

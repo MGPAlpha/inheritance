@@ -1,3 +1,5 @@
+![build status](https://travis-ci.com/MayMoonsley/inheritance.svg?branch=master)
+
 # The Prototype Inheritance
 
 ## Stuff in the Game

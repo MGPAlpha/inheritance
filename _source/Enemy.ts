@@ -3,27 +3,22 @@
 
 class Enemy extends Combatant {
 
-  constructor(name: string, health: number, energy: number, ...tools: Tool[]) {
+  utilityFunction: (Enemy, Player) => number;
+  
+  constructor(name: string, health: number, energy: number, defaultUtilityFunction: (Enemy, Human) => number, ...tools: Tool[]) {
     super(name, health, energy, ...tools);
+
+    if (defaultUtilityFunction == undefined) {
+        this.utilityFunction = AiUtilityFunctions.cautiousUtility;
+    } else {
+      this.utilityFunction = defaultUtilityFunction;
+    }
   }
 
   clone(): Enemy {
-    let copy = new Enemy(this.name, this.health, this.energy, ...this.tools.map(x => x.clone()));
+    let copy = new Enemy(this.name, this.health, this.energy, this.utilityFunction, ...this.tools.map(x => x.clone()));
     copy.statuses = this.statuses.map(x => x.clone());
     copy.utilityFunction = this.utilityFunction;
     return copy;
   }
-
-  utilityFunction(simulatedBot: Enemy, simulatedHuman: Player): number {
-    if (simulatedBot.health == 0) {
-      return Number.MIN_VALUE; // 3rd law of robotics
-    }
-    if (simulatedHuman.health == 0) {
-      return Number.MAX_VALUE;
-    }
-
-    // TODO make a more complex scoring function
-    return simulatedBot.health - simulatedHuman.health;
-    }
-
 }

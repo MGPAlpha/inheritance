@@ -1,4 +1,4 @@
-// <reference path="../AbstractEffect.ts" />
+/// <reference path="../AbstractEffect.ts" />
 
 class DamageEffect extends AbstractEffect {
 
@@ -9,7 +9,7 @@ class DamageEffect extends AbstractEffect {
   }
 
   effect(user: Combatant, target: Combatant): void {
-    target.wound(this.damage);
+    target.wound(user.statusFold(StatusFolds.DAMAGE_DEALT, this.damage));
   }
 
   toString(): string {

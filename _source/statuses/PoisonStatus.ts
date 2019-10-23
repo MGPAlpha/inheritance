@@ -2,8 +2,6 @@
 
 class PoisonStatus extends AbstractStatus {
 
-    static readonly _name: string = 'poison';
-
     constructor(amount: number) {
         super(amount);
     }
@@ -23,6 +21,26 @@ class PoisonStatus extends AbstractStatus {
 
     clone(): PoisonStatus {
         return new PoisonStatus(this.amount);
+    }
+
+    getName(): string {
+        return 'poison';
+    }
+
+    getDescription(): string {
+        if (this.amount === 1) {
+            return `Take 1 damage at the end of this turn.`;
+        } else {
+            return `Take ${this.amount} damage at the end of this turn. Decreases by one each turn.`;
+        }
+    }
+
+    getSortingNumber(): number {
+        return 0;
+    }
+
+    getUtility(): number {
+        return -1 * ((this.amount) * (this.amount + 1))/2;
     }
 
 }

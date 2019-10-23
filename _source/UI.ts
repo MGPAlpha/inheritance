@@ -96,9 +96,17 @@ class UI {
       which = 'enemy';
     }
     const div: HTMLElement = UI.makeDiv(which);
+    for (let i = 0; i < c.statuses.length; i++) {
+      div.classList.add(`status-${c.statuses[i].getName()}`);
+    }
     div.appendChild(UI.makeTextParagraph(c.name, 'name'));
     div.appendChild(UI.makeTextParagraph(`Health: ${c.health} / ${c.maxHealth}`, 'health'));
     div.appendChild(UI.makeTextParagraph(`Energy: ${c.energy} / ${c.maxEnergy}`, 'energy'));
+    if (c.statuses.length > 0) {
+      div.appendChild(UI.makeTextParagraph(
+        c.statuses.map(x => `${x.amount} ${Strings.capitalize(x.getName())}`).join(', ')
+      ));
+    }
     const toolDiv: HTMLElement = document.createElement('div');
     toolDiv.classList.add('tools');
     for (let i = 0; i < c.tools.length; i++) {

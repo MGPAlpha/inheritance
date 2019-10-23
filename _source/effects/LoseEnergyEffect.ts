@@ -1,6 +1,6 @@
 /// <reference path="../AbstractEffect.ts" />
 
-class HealingEffect extends AbstractEffect {
+class LoseEnergyEffect extends AbstractEffect {
 
   amount: number;
   constructor(amount: number) {
@@ -9,15 +9,15 @@ class HealingEffect extends AbstractEffect {
   }
 
   effect(user: Combatant, target: Combatant): void {
-    user.heal(this.amount);
+    user.loseEnergy(this.amount);
   }
 
   toString(): string {
-    return `recover ${this.amount} health`;
+    return `lose ${this.amount} energy`;
   }
 
-  clone(): HealingEffect {
-    return new HealingEffect(this.amount);
+  clone(): LoseEnergyEffect {
+    return new LoseEnergyEffect(this.amount);
   }
 
 }

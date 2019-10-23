@@ -1,3 +1,3 @@
 node _preprocess.js
-tsc --build _source/tsconfig.json
+tsc --project _source
 node _postprocess.js

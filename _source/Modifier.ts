@@ -80,7 +80,7 @@ class Modifier {
     }
     if (this.effects.length > 0) {
       let effectStrings = this.effects.map(x => x.toString());
-      acc.push(`Add effect(s): ${effectStrings.map(x => Strings.capitalize(x)).join(' ')}`);
+      acc.push(`Add effect(s): ${effectStrings.map(x => Strings.capitalize(x)).join('. ')}.`);
     }
     return Strings.conjoin(acc);
   }

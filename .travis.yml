@@ -1,0 +1,18 @@
+language: node_js
+
+node_js:
+- '12'
+
+install:
+- npm install
+
+script:
+- npm run build-all
+
+deploy:
+  provider: heroku
+  api_key:
+    secure: DanOKfIvGmLGc9gvWxabHAEsIdbOa8BQzFWGkRD3L/akqa0o29vNyYpjMOJYBlN+H3dABlUQNFG8EeFU7eKHP5ZIBDLurKRjpEoba2QamliDTN6ctvGSJNmBgjYQI4B2/ibxeyeBaEYRlGvY79/FdCBCp7nKO+FnPNs9bIrTPUMZBQrfJ8BdiYPWkvp3dGRhct3l9QNBzz0gz46+qI6F613G1WMn8PxEHCoVQmgORJrrZoco7JcXp1n4fzKauS+tz6NKx1AnI+3X8Pf7Z1OGPIkdgtykAX8Bf4uh8aldY3gapHQCe+x0CxKiNROzs92fN/YypFsS8NpeG7cUX3ti+o3xTqQ7DzCgFV76K6swdk+A4kEDL/lIuek2kmyYWMjPMQLuUj9PxeOm7l2Xlb2cQxARx/fZ5bPLzpRcx4xJMiN9nVJ+KbVpQi26xDPl3w2su+6LdxqcvrLJ7yMXZJrmM4P3NwW3gO0oD856HS6FA7H2UQGjYUNLHyEg4J0gFICHrRybzMwWWFsVPxrDcBotKtrrQC5ikJAgDkRv2ljdBVfMYs84sSPmOs0jfBjT9/7W1BfM5ldU4y3vjZvztz1XI90IuHxYZctCU9pbp1LQQD4dNEeREoMqwWDfwOPque05lZY33xXVGqD+9J8Y0sNxZ8EZP9z2DYIm1I2QvWorfeA=
+  app: prototype-inheritance
+  on:
+    branch: master

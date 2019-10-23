@@ -47,10 +47,11 @@ function writeCombatant(combatant) {
   ].concat(combatant.tools.map(x => writeTool(x, false)).reduce(concatenator).map(x => `* ${x}`));
 }
 
+console.log('Assembling Markdown descriptions...');
+
 writeLines(generateLines('Tools', processor.tools, writeTool), '_tools.md');
-
 writeLines(generateLines('Modifiers', processor.modifiers, writeModifier), '_modifiers.md');
-
 writeLines(generateLines('Characters', processor.characters, writeCombatant), '_characters.md');
-
 writeLines(generateLines('Enemies', processor.enemies, writeCombatant), '_enemies.md');
+
+console.log('Descriptions assembled!');
